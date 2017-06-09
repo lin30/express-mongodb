@@ -11,7 +11,6 @@ usersSchema.statics.getDatas = function () {
   return new Promise(async(resolve, reject) => {
     try {
       const user = await this.findOne();
-      console.log(user)
       resolve(user.data.users)
     } catch (err) {
       reject({
