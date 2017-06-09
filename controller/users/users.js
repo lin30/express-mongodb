@@ -7,7 +7,9 @@ class Users {
 
   }
   async getUser(req, res, next) {
-    const page = req.params.page;
+    const _page = req.query._page;
+    const _limit = req.query._limit;
+    console.log(_limit)
     const userData = await UsersModel.getDatas()
     try {
       res.send(userData)

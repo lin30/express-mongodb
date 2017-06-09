@@ -24,7 +24,8 @@ app.all('*', (req, res, next) => {
 		"Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
 		"Access-Control-Allow-Methods": "PUT,POST,GET,DELETE,OPTIONS",
 		"Access-Control-Allow-Credentials": true,
-		"X-Powered-By": "don't expose yourself!hahaha"
+		"X-Powered-By": "don't expose yourself!hahaha",
+		"X-Total-Count": "10"
 	})
 	if (req.method == 'OPTIONS') {
 		res.send(200);
