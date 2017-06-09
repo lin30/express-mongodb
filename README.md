@@ -1,5 +1,13 @@
+# express + mongodb
+## 启动 mongo
 
-# mongodb 查看命令
+```
+sudo mkdir -p /data/db
+mongod
+
+```
+
+## mongodb 查看命令
 ```
 cd usr/local/bin
 
@@ -11,4 +19,9 @@ show collections
 
 db.sessions.find()
 
+```
+## 查看接口
+
+```
+http://localhost:8001/users
 ```
