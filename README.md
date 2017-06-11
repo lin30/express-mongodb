@@ -7,12 +7,17 @@ sudo mongod
 
 ```
 
-## mongodb 查看命令
+## 连接mongo
+
 ```
 cd usr/local/bin
 
 (sudo) ./mongo
 
+```
+
+## mongodb 查看命令
+```
 use elm
 
 show collections
