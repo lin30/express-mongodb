@@ -3,7 +3,7 @@
 
 ```
 sudo mkdir -p /data/db
-mongod
+sudo mongod
 
 ```
 

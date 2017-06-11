@@ -4,14 +4,22 @@ import mongoose from 'mongoose';
 import userData from '../../InitData/users'
 
 const usersSchema = new mongoose.Schema({
-  data: {}
+    users: {}
 })
 
-usersSchema.statics.getDatas = function () {
+usersSchema.statics.getDatas = function (page, limit) {
   return new Promise(async(resolve, reject) => {
     try {
       const user = await this.findOne();
-      resolve(user.data.users)
+      // 分页
+      const len = user.users.length
+      const pages = Math.ceil(len / limit)
+      if (page > pages) {
+        resolve([])
+        return
+      }
+      const arr = user.users.slice((page - 1) * limit, (page - 1) * limit + 3)
+      resolve(arr)
     } catch (err) {
       reject({
         name: 'ERROR_DATA',
@@ -26,7 +34,7 @@ const Users = mongoose.model('Users', usersSchema)
 Users.findOne((err, data) => {
   if (!data) {
     Users.create({
-      data: userData
+      users: userData
     });
   }
 });
