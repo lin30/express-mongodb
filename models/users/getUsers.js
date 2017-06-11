@@ -18,7 +18,7 @@ usersSchema.statics.getDatas = function (page, limit) {
         resolve([])
         return
       }
-      const arr = user.users.slice((page - 1) * limit, (page - 1) * limit + 3)
+      const arr = user.users.slice((page - 1) * limit, page * limit)
       resolve(arr)
     } catch (err) {
       reject({
