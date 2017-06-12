@@ -19,5 +19,13 @@ class Users {
       })
     }
   }
+
+  async removeUser(req, res, next) {
+    const id = req.params.id;
+    // 删除用户
+    const dels = await UsersModel.delData(id)
+    console.log(dels)
+    res.send(dels || [])
+  }
 }
 export default new Users()

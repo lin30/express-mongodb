@@ -30,7 +30,13 @@ usersSchema.statics.getDatas = function (page, limit) {
   })
 }
 
+usersSchema.statics.delData = function(id) {
+  console.log(id)
+  this.remove({ id: id })
+}
+
 const Users = mongoose.model('Users', usersSchema)
+
 Users.findOne((err, data) => {
   if (!data) {
     Users.create({
