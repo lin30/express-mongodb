@@ -29,9 +29,9 @@ usersSchema.statics.getDatas = function (page, limit) {
       }
       // 分页
       const user = await this.find()
-                            .sort({'id': 1})
-                            .skip(limit * (page - 1))
-                            .limit(3);
+          .sort({'id': 1})
+          .skip(limit * (page - 1))
+          .limit(3);
       resolve(user)
     } catch (err) {
       reject({
@@ -45,13 +45,21 @@ usersSchema.statics.getDatas = function (page, limit) {
 
 usersSchema.statics.delData = function (id) {
   return new Promise(async(resolve, reject) => {
-    const dels = this.findOneAndRemove({
-      id: id
-    }, (err, data) => {
-      if (!err) {
-        resolve(data)
-      }
-    })
+    try {
+      await this.findOneAndRemove({
+        id: id
+      }, (err, data) => {
+        if (!err) {
+          resolve(data)
+        }
+      })
+    } catch (err) {
+      reject({
+        name: 'ERROR_DATA',
+        message: '删除数据失败',
+      });
+      console.error(err);
+    }
   })
 }
 
