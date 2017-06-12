@@ -24,8 +24,7 @@ class Users {
     const id = req.params.id;
     // 删除用户
     const dels = await UsersModel.delData(id)
-    console.log(dels)
-    res.send(dels || [])
+    res.send({ msg: 'delete ok!', record: dels })
   }
 }
 export default new Users()
