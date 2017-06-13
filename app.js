@@ -9,6 +9,7 @@ import winston from 'winston';
 import expressWinston from 'express-winston';
 import path from 'path';
 import history from 'connect-history-api-fallback';
+var bodyParser = require('body-parser');
 
 const app = express();
 
@@ -46,7 +47,10 @@ app.use(session({
 		url: config.url
 	})
 }))
-
+app.use(bodyParser.json({limit: '1mb'}));  //body-parser 解析json格式数据
+app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下面,为参数编码
+  extended: true
+}));
 // 成功打印信息在路由前生效
 // app.use(expressWinston.logger({
 // 	transports: [

@@ -26,5 +26,16 @@ class Users {
     const dels = await UsersModel.delData(id)
     res.send({ msg: 'delete ok!', record: dels })
   }
+
+  async patchUser(req, res, next) {
+    const id = req.body.id
+    const values = req.body.values
+    try {
+      const pat = await UsersModel.patchData(id, values)
+      res.send({ msg: 'patch ok', record: pat })
+    } catch(e) {
+      //
+    }
+  }
 }
 export default new Users()

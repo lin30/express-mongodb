@@ -17,7 +17,8 @@ const usersSchema = new mongoose.Schema({
       "lat": String,
       "lng": String
     }
-  }
+  },
+  "website": String
 })
 usersSchema.index({ id: 1 });
 
@@ -63,6 +64,25 @@ usersSchema.statics.delData = function (id) {
   })
 }
 
+usersSchema.statics.patchData = function (id, values) {
+  return new Promise(async(resolve, reject) => {
+    try {
+      await this.findOneAndUpdate({
+        id: id
+      }, values, (err, data) => {
+        if (!err) {
+          resolve(data)
+        }
+      })
+    } catch (err) {
+      reject({
+        name: 'ERROR_DATA',
+        message: '修改数据失败',
+      });
+      console.error(err);
+    }
+  })
+}
 const Users = mongoose.model('Users', usersSchema)
 
 Users.findOne((err, data) => {
