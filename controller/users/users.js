@@ -27,6 +27,7 @@ class Users {
     res.send({ msg: 'delete ok!', record: dels })
   }
 
+  // 修改信息
   async patchUser(req, res, next) {
     const id = req.body.id
     const values = req.body.values
@@ -36,6 +37,17 @@ class Users {
     } catch(e) {
       //
     }
+  }
+
+  // 增加用户
+  async addUser(req, res, next) {
+     try {
+        const user = req.body.values
+        const redord = await UsersModel.addData(user)
+        res.send( {msg: 'add ok!', record: redord})
+     } catch(e) {
+      //
+     }
   }
 }
 export default new Users()

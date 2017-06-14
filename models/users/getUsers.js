@@ -83,6 +83,27 @@ usersSchema.statics.patchData = function (id, values) {
     }
   })
 }
+
+usersSchema.statics.addData = function (values) {
+  return new Promise(async(resolve, reject) => {
+    try {
+      await this.count().then((dt) => {
+        const obj = {
+          ...values,
+          id: dt
+        }
+      })
+      const data = await this.create(obj)
+      resolve(data)
+    } catch (err) {
+      reject({
+        name: 'ERROR_DATA',
+        message: '修改数据失败',
+      });
+      console.error(err);
+    }
+  })
+}
 const Users = mongoose.model('Users', usersSchema)
 
 Users.findOne((err, data) => {
