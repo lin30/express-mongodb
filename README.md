@@ -42,3 +42,8 @@ http://localhost:8001/users
   "Content-Type": "application/json"
 ```
 通过 req.body 获取入参
+
+## node debug
+- chrome 浏览器57+
+- node --inspect <your_file>.js
+- chrome 打开chrome://inspect,点击 
